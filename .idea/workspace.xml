@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c234de0c-6f70-42f9-9a6a-73dee47e625c" name="Changes" comment="working version">
+    <list default="true" id="c234de0c-6f70-42f9-9a6a-73dee47e625c" name="Changes" comment="fixed routing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routers/authors.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/authors.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +134,7 @@
       <workItem from="1749858421513" duration="449000" />
       <workItem from="1749908270672" duration="599000" />
       <workItem from="1749943712780" duration="2084000" />
-      <workItem from="1749991065423" duration="1100000" />
+      <workItem from="1749991065423" duration="3789000" />
     </task>
     <task id="LOCAL-00001" summary="working version">
       <option name="closed" value="true" />
@@ -144,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749991098890</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed routing">
+      <option name="closed" value="true" />
+      <created>1749992339045</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1749992339045</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +171,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="working version" />
-    <option name="LAST_COMMIT_MESSAGE" value="working version" />
+    <MESSAGE value="fixed routing" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed routing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
