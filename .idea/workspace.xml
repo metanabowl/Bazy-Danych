@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c234de0c-6f70-42f9-9a6a-73dee47e625c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/biblioteka.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/biblioteka.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="c234de0c-6f70-42f9-9a6a-73dee47e625c" name="Changes" comment="working version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/db/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routers/authors.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/authors.py" afterDir="false" />
     </list>
@@ -137,7 +134,17 @@
       <workItem from="1749858421513" duration="449000" />
       <workItem from="1749908270672" duration="599000" />
       <workItem from="1749943712780" duration="2084000" />
+      <workItem from="1749991065423" duration="1100000" />
     </task>
+    <task id="LOCAL-00001" summary="working version">
+      <option name="closed" value="true" />
+      <created>1749991098890</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1749991098890</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +160,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="working version" />
+    <option name="LAST_COMMIT_MESSAGE" value="working version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
