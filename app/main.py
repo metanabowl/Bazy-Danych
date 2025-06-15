@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import books, users, authors, genres, rentals
+from app.routers import books, users, authors, genres, rentals, purchases
 import logging
 
 # Configure logging
@@ -41,6 +41,8 @@ app.include_router(users.router, tags=["Users"])
 app.include_router(authors.router, tags=["Authors"])
 app.include_router(genres.router, tags=["Genres"])
 app.include_router(rentals.router, tags=["Rentals"])
+app.include_router(purchases.router, tags=["Purchases"])
+
 
 # Root endpoint
 @app.get("/")

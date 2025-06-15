@@ -1,38 +1,45 @@
-from fastapi import APIRouter
+# Updated authors router
+from fastapi import APIRouter, HTTPException
 from app.db.connection import get_read_connection, get_write_connection
-from app.models.schemas import Author
+from app.models.schemas import AuthorResponse, AuthorCreate
+from typing import List
 
 router = APIRouter(prefix="/authors", tags=["authors"])
 
-@router.get("/")  # Changed from "/authors" to "/"
+
+@router.get("/", response_model=List[AuthorResponse])
 def get_all():
     conn = get_read_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM authors")
-    result = cursor.fetchall()
+    results = cursor.fetchall()
     conn.close()
-    return result
 
-@router.get("/{id}")  # Changed from "/authors/{id}" to "/{id}"
+    return [AuthorResponse(**row) for row in results]
+
+
+@router.get("/{id}", response_model=AuthorResponse)
 def get_by_id(id: int):
     conn = get_read_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM authors WHERE id = %s", (id,))
     result = cursor.fetchone()
     conn.close()
-    return result
 
-@router.post("/")  # Changed from "/authors" to "/"
-def create(item: Author):
+    if not result:
+        raise HTTPException(status_code=404, detail="Author not found")
+
+    return AuthorResponse(**result)
+
+
+@router.post("/", response_model=dict)
+def create(item: AuthorCreate):
     conn = get_write_connection()
     cursor = conn.cursor()
-    data = item.dict()
-    keys = list(data.keys())
-    values = list(data.values())
     cursor.execute(
-        "INSERT INTO authors (" + ", ".join(keys) + ") VALUES (" + ", ".join(["%s"] * len(keys)) + ")",
-        values
+        "INSERT INTO authors (first_name, last_name, nationality_id) VALUES (%s, %s, %s)",
+        (item.first_name, item.last_name, item.nationality_id)
     )
     conn.commit()
     conn.close()
-    return {"message": "Authors created successfully"}
+    return {"message": "Author created successfully"}

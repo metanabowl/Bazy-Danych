@@ -1,38 +1,45 @@
-from fastapi import APIRouter
+# Updated book_items router
+from fastapi import APIRouter, HTTPException
 from app.db.connection import get_read_connection, get_write_connection
-from app.models.schemas import BookItem
+from app.models.schemas import BookItemResponse, BookItemCreate
+from typing import List
 
 router = APIRouter(prefix="/book_items", tags=["book_items"])
 
-@router.get("/")
+
+@router.get("/", response_model=List[BookItemResponse])
 def get_all():
     conn = get_read_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM book_items")
-    result = cursor.fetchall()
+    results = cursor.fetchall()
     conn.close()
-    return result
 
-@router.get("/{id}")
+    return [BookItemResponse(**row) for row in results]
+
+
+@router.get("/{id}", response_model=BookItemResponse)
 def get_by_id(id: int):
     conn = get_read_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM book_items WHERE id = %s", (id,))
     result = cursor.fetchone()
     conn.close()
-    return result
 
-@router.post("/")
-def create(item: BookItem):
+    if not result:
+        raise HTTPException(status_code=404, detail="Book item not found")
+
+    return BookItemResponse(**result)
+
+
+@router.post("/", response_model=dict)
+def create(item: BookItemCreate):
     conn = get_write_connection()
     cursor = conn.cursor()
-    data = item.dict()
-    keys = list(data.keys())
-    values = list(data.values())
     cursor.execute(
-        "INSERT INTO book_items (" + ", ".join(keys) + ") VALUES (" + ", ".join(["%s"] * len(keys)) + ")",
-        values
+        "INSERT INTO book_items (book_id, status) VALUES (%s, %s)",
+        (item.book_id, item.status)
     )
     conn.commit()
     conn.close()
-    return {"message": "Book items created successfully"}
+    return {"message": "Book item created successfully"}

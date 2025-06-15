@@ -1,38 +1,45 @@
-from fastapi import APIRouter
+# Updated genres router
+from fastapi import APIRouter, HTTPException
 from app.db.connection import get_read_connection, get_write_connection
-from app.models.schemas import Genre
+from app.models.schemas import GenreResponse, GenreCreate
+from typing import List
 
 router = APIRouter(prefix="/genres", tags=["genres"])
 
-@router.get("/")
+
+@router.get("/", response_model=List[GenreResponse])
 def get_all():
     conn = get_read_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM genres")
-    result = cursor.fetchall()
+    results = cursor.fetchall()
     conn.close()
-    return result
 
-@router.get("/{id}")
+    return [GenreResponse(**row) for row in results]
+
+
+@router.get("/{id}", response_model=GenreResponse)
 def get_by_id(id: int):
     conn = get_read_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM genres WHERE id = %s", (id,))
     result = cursor.fetchone()
     conn.close()
-    return result
 
-@router.post("/")
-def create(item: Genre):
+    if not result:
+        raise HTTPException(status_code=404, detail="Genre not found")
+
+    return GenreResponse(**result)
+
+
+@router.post("/", response_model=dict)
+def create(item: GenreCreate):
     conn = get_write_connection()
     cursor = conn.cursor()
-    data = item.dict()
-    keys = list(data.keys())
-    values = list(data.values())
     cursor.execute(
-        "INSERT INTO genres (" + ", ".join(keys) + ") VALUES (" + ", ".join(["%s"] * len(keys)) + ")",
-        values
+        "INSERT INTO genres (name) VALUES (%s)",
+        (item.name,)
     )
     conn.commit()
     conn.close()
-    return {"message": "Genres created successfully"}
+    return {"message": "Genre created successfully"}
