@@ -4,7 +4,8 @@ from app.models.schemas import Author
 
 router = APIRouter(prefix="/authors", tags=["authors"])
 
-@router.get("/")
+# Remove the trailing slash from route definitions
+@router.get("")  # Changed from "/" to ""
 def get_all():
     conn = get_read_connection()
     cursor = conn.cursor(dictionary=True)
@@ -13,7 +14,7 @@ def get_all():
     conn.close()
     return result
 
-@router.get("/{id}")
+@router.get("/{id}")  # This stays the same
 def get_by_id(id: int):
     conn = get_read_connection()
     cursor = conn.cursor(dictionary=True)
@@ -22,7 +23,7 @@ def get_by_id(id: int):
     conn.close()
     return result
 
-@router.post("/")
+@router.post("")  # Changed from "/" to ""
 def create(item: Author):
     conn = get_write_connection()
     cursor = conn.cursor()
