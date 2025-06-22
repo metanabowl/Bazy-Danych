@@ -144,7 +144,7 @@ def get_user_library(user_id: int):
 
 @router.post("/", response_model=dict)
 def create_purchase(purchase: PurchaseCreate):
-    """Create a new purchase"""
+    """Create a new purchase (buy a book)"""
     conn = None
     cursor = None
     try:
@@ -173,7 +173,7 @@ def create_purchase(purchase: PurchaseCreate):
 
         logger.info(f"Purchase created successfully with ID: {purchase_id}")
         return {
-            "message": "Purchase created successfully",
+            "message": "Book purchased successfully",
             "purchase_id": purchase_id
         }
 
@@ -181,6 +181,57 @@ def create_purchase(purchase: PurchaseCreate):
         raise
     except Exception as e:
         logger.error(f"Error in create_purchase: {str(e)}")
+        if conn:
+            conn.rollback()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+
+@router.delete("/{purchase_id}", response_model=dict)
+def return_purchase(purchase_id: int):
+    """Return a purchased book (delete purchase record)"""
+    conn = None
+    cursor = None
+    try:
+        logger.info(f"Attempting to return purchase with id: {purchase_id}")
+        conn = get_write_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        # First check if purchase exists
+        cursor.execute("SELECT * FROM purchases WHERE id = %s", (purchase_id,))
+        purchase = cursor.fetchone()
+
+        if not purchase:
+            logger.warning(f"Purchase with id {purchase_id} not found")
+            raise HTTPException(status_code=404, detail="Purchase not found")
+
+        # Delete the purchase
+        cursor.execute("DELETE FROM purchases WHERE id = %s", (purchase_id,))
+
+        if cursor.rowcount == 0:
+            raise HTTPException(status_code=404, detail="Purchase not found")
+
+        conn.commit()
+        logger.info(f"Purchase {purchase_id} returned successfully")
+
+        return {
+            "message": "Book returned successfully",
+            "returned_purchase": {
+                "id": purchase["id"],
+                "user_id": purchase["user_id"],
+                "book_id": purchase["book_id"],
+                "price": float(purchase["price"])
+            }
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error in return_purchase: {str(e)}")
         if conn:
             conn.rollback()
         raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")

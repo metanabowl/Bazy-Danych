@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c234de0c-6f70-42f9-9a6a-73dee47e625c" name="Changes" comment="added server's visibility from other devices in the network">
-      <change afterPath="$PROJECT_DIR$/app/routers/purchases.py" afterDir="false" />
+    <list default="true" id="c234de0c-6f70-42f9-9a6a-73dee47e625c" name="Changes" comment="Added purchases handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routers/authors.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/authors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routers/book_items.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/book_items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routers/books.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/books.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routers/genres.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/genres.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routers/purchases.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/purchases.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routers/rentals.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/rentals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routers/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +134,10 @@
       <workItem from="1749858421513" duration="449000" />
       <workItem from="1749908270672" duration="599000" />
       <workItem from="1749943712780" duration="2084000" />
-      <workItem from="1749991065423" duration="8394000" />
+      <workItem from="1749991065423" duration="11215000" />
+      <workItem from="1750129455702" duration="393000" />
+      <workItem from="1750130066558" duration="648000" />
+      <workItem from="1750139871788" duration="1139000" />
     </task>
     <task id="LOCAL-00001" summary="working version">
       <option name="closed" value="true" />
@@ -166,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750003029199</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added purchases handling">
+      <option name="closed" value="true" />
+      <created>1750009615971</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1750009615971</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +192,8 @@
     <MESSAGE value="working version" />
     <MESSAGE value="fixed routing" />
     <MESSAGE value="added server's visibility from other devices in the network" />
-    <option name="LAST_COMMIT_MESSAGE" value="added server's visibility from other devices in the network" />
+    <MESSAGE value="Added purchases handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added purchases handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
